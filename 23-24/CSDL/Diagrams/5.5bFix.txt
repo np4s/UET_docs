@@ -1,0 +1,8 @@
+SELECT COUNT(*)
+FROM Employee
+WHERE Sex = 'Male' AND Dno IN
+			(SELECT Dno
+			FROM Employee E
+			GROUP BY Dno
+			HAVING AVG(Salary) > 30000) Tmp
+GROUP BY Tmp.Dno
